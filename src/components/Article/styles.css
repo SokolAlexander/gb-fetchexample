@@ -1,0 +1,12 @@
+.article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+  border: 1px dashed burlywood;
+}
+
+.image {
+  border: 1px solid gray;
+  width: 50%;
+}

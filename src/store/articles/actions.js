@@ -1,4 +1,6 @@
+import axios from 'axios';
 import * as types from "./actionsTypes";
+import { apiUrl } from "../constants";
 
 
 export const getArticlesRequest = () => ({
@@ -19,6 +21,19 @@ export const getArticlesFailure = (error) => ({
   },
 });
 
-export const getArticles = () => (dispatch, getState) => {
-  // TODO
+export const getArticles = () => async (dispatch, getState) => {
+  try {
+    dispatch(getArticlesRequest());
+    const res = await axios.get(apiUrl);
+    console.log(res);
+  
+    dispatch(getArticlesSuccess(res.data));
+  } catch (err) {
+    dispatch(getArticlesFailure(err));
+  }
+
+    // fetch(apiUrl).then(res => res.json())
+    // .then(articles => dispatch(getArticlesSuccess(articles)))
+    // .catch(err => dispatch(getArticlesFailure(err)));
 };
+
